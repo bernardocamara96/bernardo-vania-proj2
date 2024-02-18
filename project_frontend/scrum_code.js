@@ -20,7 +20,7 @@ getUser(username, pass).then((result) => {
    } else {
       firstName_txt.textContent = user.firstName;
       user_img.src = user.imgURL;
-      console.log(user);
+
       colorizeApp(user.background_color, user.toDo_color, user.doing_color, user.done_color);
       getTasks(username, pass).then((result) => {
          let tasks = result;

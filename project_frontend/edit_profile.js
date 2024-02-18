@@ -90,8 +90,6 @@ document.querySelector("#edit_confirmPhoto").addEventListener("click", function 
    const validURL = isValidURL(newPhoto);
    if (validURL) {
       document.querySelector("#user_photo").src = newPhoto;
-   } else {
-      document.querySelector("#user_photo").src = "user.png";
    }
    background.style.visibility = "hidden";
    modalPhoto.style.visibility = "hidden";
@@ -160,7 +158,7 @@ async function saveChanges() {
       newPhoto = document.querySelector("#edit_photoLabel").value;
       updatePhoto(username, password, newPhoto).then((response) => {
          if (response.status === 200) {
-            user_img.src = newPhoto;
+            user_img.src = document.querySelector("#user_photo").src;
          } else if (response.status === 404) {
             alert("User not found");
             window.location.href = "login.html";
@@ -253,7 +251,7 @@ bntSave.addEventListener("click", function () {
       console.log(result);
       if (result == true) {
          alert("Your changes have been saved");
-         window.location.href = "scrum.html";
+         //window.location.href = "scrum.html";
       } else if (
          document.getElementById("edit_password").value != "" ||
          document.getElementById("edit_phone").value != "" ||

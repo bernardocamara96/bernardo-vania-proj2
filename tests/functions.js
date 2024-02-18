@@ -21,10 +21,9 @@ async function validateUser(username_txt, password_txt, email_txt, firstName_txt
          return 200;
       } else if (response.status == 409) {
          return 409;
-      } else if(response.status == 400){
+      } else if (response.status == 400) {
          return 400;
-        
-      }else{
+      } else {
          return 500;
       }
    } catch (err) {
