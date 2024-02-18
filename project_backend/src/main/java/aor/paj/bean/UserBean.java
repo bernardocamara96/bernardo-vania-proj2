@@ -39,16 +39,18 @@ public class UserBean {
             users = new ArrayList<User>();
 
     }
+    //Método para adicionar um user novo ao json
     public void addUser(User user) {
         users.add(user);
         writeIntoJsonFile();
     }
 
+    //Método para adicionar uma task nova a um user
     public void addTask(User user, Task task){
         user.getTasks().add(task);
         writeIntoJsonFile();
     }
-
+    //Método para eliminar uma task
     public boolean removeTask(User user,long id) {
         boolean taskRemoved=false;
         ArrayList<Task> tasksRequested=user.getTasks();
@@ -61,6 +63,8 @@ public class UserBean {
         writeIntoJsonFile();
         return taskRemoved;
     }
+
+    //getter de uma task a partir do seu id
     public Task getTask(User user, long id){
         Task taskRequested=null;
         ArrayList<Task> tasksUser=user.getTasks();
@@ -75,10 +79,13 @@ public class UserBean {
         return taskRequested;
     }
 
+    //faz o update do estado da task que recebe como input
     public void updateTaskState(Task task, String state){
         task.changeState(state);
         writeIntoJsonFile();
     }
+
+    //faz o update dos atributos da task que recebe como input
     public void updateTask(Task task, String title, String description, LocalDate initialDate, LocalDate endDate,
                            int priority){
         task.setTitle(title);
@@ -89,7 +96,7 @@ public class UserBean {
         writeIntoJsonFile();
     }
 
-
+    //Método em que o output é o objeto UserDetails que tem todos os atributos iguais ao User menos a pass
     public UserDetails getUserDetails(String username){
         User userRequested=null;
         UserDetails userDetails=null;
@@ -106,6 +113,7 @@ public class UserBean {
         }
         return userDetails;
     }
+    //getter do user a partir do seu username e da sua password
     public User getUser(String username, String password){
         User userRequested=null;
         for(int i=0;i<users.size() && userRequested==null;i++){
@@ -115,6 +123,7 @@ public class UserBean {
         }
         return userRequested;
     }
+    //método para validar um user novo e dependendo da verificação em que falhar manda uma resposta diferente
     public int validateUserRegister(String username,String password, String email, String firstName, String lastName, String phoneNumber){
 
         final int EMPTY_FIELDS=0, USERNAME_EXISTS=1, EMAIL_EXISTS=2,INVALID_EMAIL=3,INVALID_PHONE=4,USER_VALIDATE=10;
@@ -144,37 +153,37 @@ public class UserBean {
         return VALIDATION_STATE;
     }
 
-
+    //Recebe uma string e vê se é um número de telefone válido
     public boolean isValidPhoneNumber(String phoneNumber){
         boolean valideNumber=false;
         try {
-            // Remove non-digit characters from the phone number
+
             String cleanedPhoneNumber = phoneNumber.replaceAll("[^\\d]", "");
 
-            // Check if the cleaned phone number has the expected length
             if (cleanedPhoneNumber.length() == 9 || cleanedPhoneNumber.length() == 10) {
-                // Additional checks based on your requirements, if needed
                 valideNumber=true;
             } else {
                 valideNumber= false;
             }
         } catch (NumberFormatException e) {
-            // An exception occurred during parsing (non-numeric characters present)
             valideNumber=false;
         }
         return valideNumber;
     }
 
+    //verifica se um URL é válido
     public boolean isValidUrl(String urlString) {
         try {
-            // Attempt to create a URL object with the provided string
+
             new URL(urlString);
             return true;
         } catch (MalformedURLException e) {
-            // URL is not valid
+
             return false;
         }
     }
+
+    //verifica se um email é válido
     public boolean isValidEmail(String email) {
         boolean isValid = false;
         try {

@@ -2,10 +2,11 @@ const username = sessionStorage.getItem("username");
 const password = sessionStorage.getItem("pass");
 const background = document.querySelector("#background");
 const modalPhoto = document.querySelector("#edit_modal");
-const user_img = document.querySelector("#user_photo");
+const user_img = document.querySelector("#user_img");
 const body_color = document.querySelector("#body_color");
 
 const imageModal = document.getElementById("edit_photo");
+const user_photo = document.getElementById("user_photo");
 
 let user = null;
 
@@ -21,6 +22,7 @@ getUser(username, password).then((result) => {
       user = result;
       user_img.src = user.imgURL;
       imageModal.src = user.imgURL;
+      user_photo.src = user.imgURL;
       viewpassword.placeholder = user.password;
       viewEmail.placeholder = user.email;
       viewFirstName.placeholder = user.firstName;
@@ -74,10 +76,14 @@ background.addEventListener("click", function () {
    modalPhoto.style.visibility = "hidden";
 });
 
+edit_photoLabel = document.querySelector("#edit_photoLabel");
+
 edit_photoLabel.addEventListener("change", function () {
    if (isValidURL(edit_photoLabel.value)) {
       imageModal.src = edit_photoLabel.value;
-   } else imageModal.src = user_img.src;
+   } else {
+      imageModal.src = user_img.src;
+   }
 });
 
 document.querySelector("header h1").addEventListener("click", function () {
@@ -88,8 +94,9 @@ document.querySelector("header h1").addEventListener("click", function () {
 document.querySelector("#edit_confirmPhoto").addEventListener("click", function () {
    newPhoto = document.querySelector("#edit_photoLabel").value;
    const validURL = isValidURL(newPhoto);
-   if (validURL) {
-      document.querySelector("#user_photo").src = newPhoto;
+
+   if (validURL == true) {
+      user_photo.src = newPhoto;
    }
    background.style.visibility = "hidden";
    modalPhoto.style.visibility = "hidden";
@@ -156,9 +163,9 @@ async function saveChanges() {
 
    if (photoEdited && document.getElementById("edit_photoLabel").value != "") {
       newPhoto = document.querySelector("#edit_photoLabel").value;
-      updatePhoto(username, password, newPhoto).then((response) => {
+      updatePhoto(username, password, user_photo.src).then((response) => {
          if (response.status === 200) {
-            user_img.src = document.querySelector("#user_photo").src;
+            user_img.src = user_photo.src;
          } else if (response.status === 404) {
             alert("User not found");
             window.location.href = "login.html";
@@ -251,7 +258,7 @@ bntSave.addEventListener("click", function () {
       console.log(result);
       if (result == true) {
          alert("Your changes have been saved");
-         //window.location.href = "scrum.html";
+         window.location.href = "scrum.html";
       } else if (
          document.getElementById("edit_password").value != "" ||
          document.getElementById("edit_phone").value != "" ||

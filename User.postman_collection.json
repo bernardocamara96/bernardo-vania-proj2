@@ -1,0 +1,364 @@
+{
+	"info": {
+		"_postman_id": "831f8d2c-6deb-4bce-98b9-4a3cbc2635a7",
+		"name": "User",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32787927"
+	},
+	"item": [
+		{
+			"name": "validadeRegister",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "password",
+						"value": "fadsfda",
+						"type": "text"
+					},
+					{
+						"key": "email",
+						"value": "faf@fasdfad",
+						"type": "text"
+					},
+					{
+						"key": "firstName",
+						"value": "fadffdsa",
+						"type": "text"
+					},
+					{
+						"key": "lastName",
+						"value": "fadsfdas",
+						"type": "text"
+					},
+					{
+						"key": "phoneNumber",
+						"value": "123456789",
+						"type": "text"
+					},
+					{
+						"key": "username",
+						"value": "bernardo323",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"username\": \"bernardo.com\",\r\n      \"password\": \"fasdf\",\r\n      \"email\": \"fsf\",\r\n      \"firstName\": \"fsadfas\",\r\n      \"lastName\": \"fsafsadfd\",\r\n      \"phoneNumber\": \"fdsfads\",\r\n      \"imgURL\": \"fasdff\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/project_backend/rest/users/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"project_backend",
+						"rest",
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Invalid number\", function () {\r",
+							"    pm.response.to.have.status(409);\r",
+							"    \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n \"username\": \"newuser\",\r\n  \"password\": \"newpassword\",\r\n  \"email\": \"newemail@example.com\",\r\n  \"firstName\": \"John\",\r\n  \"lastName\": \"Doe\",\r\n  \"phoneNumber\": \"1234567891\",\r\n  \"imgURL\": \"https://s1.static.bes/cavalo.jpg\"\r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/project_backend/rest/users/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"project_backend",
+						"rest",
+						"users",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUserSuccess",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "username",
+						"value": "alexa",
+						"type": "text"
+					},
+					{
+						"key": "pass",
+						"value": "alexa1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/project_backend/rest/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"project_backend",
+						"rest",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUserFail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Invalid number\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/project_backend/rest/users/bernardo2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"project_backend",
+						"rest",
+						"users",
+						"bernardo2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updatePhoto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Invalid photo url\", function () {\r",
+							"    pm.response.to.have.status(409);\r",
+							"    \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "username",
+						"value": "beautifulladybug229",
+						"type": "text"
+					},
+					{
+						"key": "newPhoto",
+						"value": "pela-velha-paisagem-ocidental_23-2150527864.jpg?w=3",
+						"type": "text"
+					},
+					{
+						"key": "password",
+						"value": "ghost",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/project_backend/rest/users/updatePhoto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"project_backend",
+						"rest",
+						"users",
+						"updatePhoto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "loginFailed",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "username",
+						"value": "user1",
+						"type": "text"
+					},
+					{
+						"key": "password",
+						"value": "user",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_user\n}}/login",
+					"host": [
+						"{{base_user\n}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "loginSuccess",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "username",
+						"value": "bernardo12",
+						"type": "text"
+					},
+					{
+						"key": "password",
+						"value": "bernardo",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_user\n}}/login",
+					"host": [
+						"{{base_user\n}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logoutFail",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "username",
+						"value": "user1",
+						"type": "text"
+					},
+					{
+						"key": "password",
+						"value": "user",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_user\n}}/logout",
+					"host": [
+						"{{base_user\n}}"
+					],
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logoutSuccess",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "username",
+						"value": "bernardo12",
+						"type": "text"
+					},
+					{
+						"key": "password",
+						"value": "bernardo",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_user\n}}/logout",
+					"host": [
+						"{{base_user\n}}"
+					],
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUsers",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "removeUser",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

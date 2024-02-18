@@ -1,28 +1,18 @@
 const register = require("./functions");
 
 //Verifica se o user com todos os campos corretos é validado
-<<<<<<< Updated upstream
-test("User successfully validated", async  ()=>{
-   try{
-   const response = await register.validateUser("e", "dseddeedf", "jood@ff.eom" ,
-   "Danifxdela", "Menfddes", "911061551");
-       expect(response).toBe(200);
-       
-   }catch (error){
-=======
 test("User successfully validated", async () => {
    try {
       const response = await register.validateUser(
          "e",
          "dseddeedf",
-         "joo@d.com",
+         "jood@ff.eom",
          "Danifxdela",
          "Menfddes",
          "911061551"
       );
-      expect(response.status).toBe(200);
+      expect(response).toBe(200);
    } catch (error) {
->>>>>>> Stashed changes
       expect(error).toBeUndefined();
    }
 });

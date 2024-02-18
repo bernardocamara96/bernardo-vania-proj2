@@ -22,6 +22,7 @@ public class TaskService {
     @Inject
     UserBean userBean;
 
+    //getter das tasks
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
@@ -32,6 +33,7 @@ public class TaskService {
     }
 
 
+    //getter da task com o id {id}
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -43,6 +45,8 @@ public class TaskService {
 
         return userBean.getTask(userRequested,idLong);
     }
+
+
     @PUT
     @Path("/update")
     @Produces(MediaType.APPLICATION_JSON)
