@@ -3,7 +3,7 @@ const register = require("./functions");
 //Verifica se o user com todos os campos corretos é validado
 test("User successfully validated", async  ()=>{
    try{
-   const response = await register.validateUser("e", "dseddeedf", "joo@d.csm" ,
+   const response = await register.validateUser("e", "dseddeedf", "jood@ff.eom" ,
    "Danifxdela", "Menfddes", "911061551");
        expect(response).toBe(200);
        
